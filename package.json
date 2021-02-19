@@ -1,0 +1,29 @@
+{
+  "name": "kakao.tony.splash",
+  "version": "0.0.0",
+  "scripts": {
+    "dev": "vite",
+    "build": "vuedx-typecheck . && vite build",
+    "serve": "vite preview"
+  },
+  "dependencies": {
+    "vue": "^3.0.5"
+  },
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^4.15.1",
+    "@typescript-eslint/parser": "^4.15.1",
+    "@vitejs/plugin-vue": "^1.1.4",
+    "@vue/compiler-sfc": "^3.0.5",
+    "@vuedx/typecheck": "^0.6.0",
+    "@vuedx/typescript-plugin-vue": "^0.6.3",
+    "eslint": "^7.20.0",
+    "eslint-config-standard": "^16.0.2",
+    "eslint-plugin-html": "^6.1.1",
+    "eslint-plugin-import": "^2.22.1",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-promise": "^4.3.1",
+    "eslint-plugin-vue": "^7.6.0",
+    "typescript": "^4.1.3",
+    "vite": "^2.0.0"
+  }
+}
