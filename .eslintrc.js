@@ -18,5 +18,6 @@ module.exports = {
     'vue'
   ],
   rules: {
+    '@typescript-eslint/no-unused-vars': 'off'
   }
 }
