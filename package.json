@@ -10,12 +10,15 @@
     "axios": "^0.21.1",
     "dayjs": "^1.10.4",
     "normalize": "^0.3.1",
+    "path": "^0.12.7",
     "sass": "^1.32.8",
     "unsplash-js": "^7.0.4",
+    "vite-tsconfig-paths": "^2.1.0",
     "vue": "^3.0.5",
     "vue-router": "^4.0.3"
   },
   "devDependencies": {
+    "@types/node": "^14.14.33",
     "@typescript-eslint/eslint-plugin": "^4.15.1",
     "@typescript-eslint/parser": "^4.15.1",
     "@vitejs/plugin-vue": "^1.1.4",

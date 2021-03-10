@@ -6,40 +6,47 @@
     <div class="home-clock">
       {{ currentTime }}
     </div>
-    <div class="home-search">
+    <!-- <div class="home-search">
       <input
         v-model="searchString"
         type="text"
-        class="search-input"
+        class="input-main"
       >
+    </div> -->
+    <!-- <span
+      v-for="todo in scheduled"
+      :key="todo.id"
+    >[{{ todo.title }}]</span> -->
+    <div class="home-todo">
+      <splash-todo />
     </div>
   </section>
 </template>
 
 <script lang="ts" setup>
-import { computed, onMounted, ref } from 'vue'
+import { computed, ref } from 'vue'
 import type { CSSProperties } from 'vue'
 import { useDebounce } from '../compositions/useDebounce'
 import { useTime } from '../compositions/useTime'
 import { useUnsplash } from '../compositions/useUnsplash'
+import SplashTodo from './SplashTodo.vue'
+import { useTodo } from '../compositions/useTodo'
 
 const currentTime = useTime('HH:mm')
-const searchString = ref<string>('')
-const photos = useUnsplash(useDebounce<string>(searchString))
+const searchString = ref<string>('cats')
+const photos = useUnsplash(useDebounce<string>(searchString, { immediate: true }))
 const backgroundImage = computed(() => {
   const url = photos.value[0]?.urls?.regular || ''
   return { 'background-image': `url(${url})` } as CSSProperties
 })
 
-onMounted(() => {
-  searchString.value = 'cat'
-})
-
+const { scheduled } = useTodo()
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@900&display=swap');
-:root {
+
+:deep() {
   --white: #fff;
   --width-m: 960px;
   --radius-l: 8px;
@@ -59,20 +66,13 @@ onMounted(() => {
     font-family: 'Roboto';
     color: var(--white);
   }
-  .home-search {
+  .home-search, .home-todo {
     position: relative;
     background-color: var(--white);
     width: var(--width-m);
     border-radius: var(--radius-l);
     margin: auto;
     padding: var(--padding-s);
-
-    .search-input {
-      font-size: 32px;
-      border: none;
-      width: 100%;
-      text-align: center;
-    }
   }
 }
 </style>

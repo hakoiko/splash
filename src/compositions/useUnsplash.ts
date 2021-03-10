@@ -47,15 +47,18 @@ export function useUnsplash (keyword: Ref<string>): Ref<UnsplashPhoto[]> {
   const unsplashApi = createApi({ accessKey: accessKey })
 
   async function searchPhotos (word: string): Promise<UnsplashPhoto[]> {
+    // API 사용횟수 관계로 주석처리 ㅠㅠ
     try {
       const apiCall = await unsplashApi.search.getPhotos({ query: word, page: 1 })
       if (apiCall.response) photos.value = apiCall.response.results as unknown as UnsplashPhoto[] || []
     } catch (error) {
       throw new Error(error.message)
     }
-    console.log(photos.value)
+    console.log('@SEARCH PHOTOS!')
     return photos.value
   }
+
+  if (keyword.value) searchPhotos(keyword.value)
 
   watch(keyword, async (newval) => {
     await searchPhotos(newval)
