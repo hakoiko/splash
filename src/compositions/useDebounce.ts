@@ -29,10 +29,12 @@ export function useDebounce<T> (
   // source.value를 집어넣어 외부에서 debounced value에 대한 변경 감지가 원활할듯 합니다
   nextTick(() => {
     if (immediate) current.value = source.value
-    timeout = setTimeout(() => {
-      current.value = source.value
-    }, ms)
   })
+
+  // initial debounced value 적용
+  timeout = setTimeout(() => {
+    current.value = source.value
+  }, ms)
 
   watch(source, (newval) => {
     if (timeout) clearTimeout(timeout)

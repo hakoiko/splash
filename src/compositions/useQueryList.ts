@@ -1,5 +1,5 @@
 import { Ref, ref } from '@vue/reactivity'
-import { computed } from '@vue/runtime-core'
+import { watch } from '@vue/runtime-core'
 
 type UseQueryOptions<T> = {
   query: (arg: T) => boolean
@@ -18,24 +18,24 @@ export function useQueryList<T> (initialValue: T[] = [], options?: UseQueryOptio
   }
 
   const list = ref<T[]>(initialValue) as Ref<T[]>
-  // const results = ref<T[]>([]) as Ref<T[]>
-  // const elses = ref<T[]>([]) as Ref<T[]>
-  // watch(list, (newval) => {
-  //   console.log('@useQueryList.watch', newval)
-  //   results.value = []
-  //   elses.value = []
-  //   newval.forEach(item => {
-  //     if (query(item)) results.value.push(item)
-  //     else elses.value.push(item)
-  //   })
-  // })
+  const results = ref<T[]>([]) as Ref<T[]>
+  const elses = ref<T[]>([]) as Ref<T[]>
+  watch(list, (newval) => {
+    console.log('@useQueryList.watch', newval)
+    results.value = []
+    elses.value = []
+    newval.forEach(item => {
+      if (query(item)) results.value.push(item)
+      else elses.value.push(item)
+    })
+  }, { deep: true })
 
-  const results = computed(() => {
+  /* const results = computed(() => {
     return list.value.filter(item => query(item))
   })
   const elses = computed(() => {
     return list.value.filter(item => !query(item))
-  })
+  }) */
 
   return {
     list,
