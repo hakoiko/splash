@@ -21,7 +21,6 @@ export function useQueryList<T> (initialValue: T[] = [], options?: UseQueryOptio
   const results = ref<T[]>([]) as Ref<T[]>
   const elses = ref<T[]>([]) as Ref<T[]>
   watch(list, (newval) => {
-    console.log('@useQueryList.watch', newval)
     results.value = []
     elses.value = []
     newval.forEach(item => {

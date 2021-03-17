@@ -26,11 +26,11 @@
 <script lang="ts" setup>
 import { computed, ref } from 'vue'
 import type { CSSProperties } from 'vue'
-import { useDebounce } from '../compositions/useDebounce'
-import { useTime } from '../compositions/useTime'
-import { useUnsplash } from '../compositions/useUnsplash'
+import { useDebounce } from '@compositions/useDebounce'
+import { useTime } from '@compositions/useTime'
+import { useUnsplash } from '@compositions/useUnsplash'
 import SplashTodo from './SplashTodo.vue'
-import { useTodo } from '../compositions/useTodo'
+import { useTodo } from '@compositions/useTodo'
 
 const currentTime = useTime('HH:mm')
 const searchString = ref<string>('cats')
@@ -50,7 +50,9 @@ const { scheduled } = useTodo()
   --white: #fff;
   --width-m: 960px;
   --radius-l: 8px;
+  --radius-m: 4px;
   --padding-s: 8px;
+  --font-l: 24px;
 }
 .splash-home {
   position: relative;
@@ -66,13 +68,17 @@ const { scheduled } = useTodo()
     font-family: 'Roboto';
     color: var(--white);
   }
-  .home-search, .home-todo {
+  .home-search {
     position: relative;
     background-color: var(--white);
     width: var(--width-m);
     border-radius: var(--radius-l);
     margin: auto;
     padding: var(--padding-s);
+  }
+  .home-todo {
+    width: 70vw;
+    margin: auto;
   }
 }
 </style>
